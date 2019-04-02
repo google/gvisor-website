@@ -35,5 +35,5 @@ driven by the workloads that matter to gVisor contributors and users.
 The structural costs of gVisor are heavily influenced by the platform choice,
 which implements system call interception. Today, gVisor supports a variety of
 platforms. These platforms present distinct performance, compatibility and
-security trade-offs. For example, the KVM platform low overhead system call
-interception but runs poorly with nested virtualization.
+security trade-offs. For example, the KVM platform has low overhead system call
+interception, but runs poorly with nested virtualization.
