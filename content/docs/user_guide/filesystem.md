@@ -3,9 +3,9 @@ title = "Filesystem"
 weight = 50
 +++
 gVisor accesses the filesystem through a file proxy, called gofer. The gofer runs
-as a separate process, that is isolated from the sandbox. They communicate using
-the 9P protocol. For a more detailed explanation see
-[Overview > Gofer](../architecture_guide/overview/#gofer)
+as a separate process, that is isolated from the sandbox. Gofer instances 
+communicate with their respective sentry using the 9P protocol. For a more detailed
+explanation see [Overview > Gofer](../architecture_guide/overview/#gofer)
 
 ## Sandbox Overlay
 
@@ -33,15 +33,16 @@ Add the following `runtimeArgs` to your Docker configuration
 
 ## Shared RootFS
 
-The root FS is where the image is extract and not expected to be modified externally.
-This allows for some optimizations to take place, like skipping checks to determine
-if a directory has changed since the last time it was cached. If you need to `docker cp`
-files inside the root FS, you may want to enable shared mode. Just be aware that file
-system access will be slower due to the extra checks that are required.
+The root FS is where the image is extracted and is not expected to be modified from 
+outside the sandbox. This allows for some optimizations to take place, like skipping
+checks to determine if a directory has changed since the last time it was cached, thus
+missing updates that may have happened. If you need to `docker cp` files inside the 
+root FS, you may want to enable shared mode. Just be aware that file system access 
+will be slower due to the extra checks that are required.
 
 > Note: External mounts are always shared.
 
-Add the following `runtimeArgs` to your Docker configuration
+To use tmpfs overlay, add the following `runtimeArgs` to your Docker configuration
 (`/etc/docker/daemon.json`) and restart the Docker daemon:
 
 ```json

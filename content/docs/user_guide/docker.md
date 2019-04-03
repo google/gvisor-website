@@ -52,7 +52,7 @@ You can also run a terminal to explore the container.
 docker run --runtime=runsc --rm -it ubuntu /bin/bash
 ```
 
-Many docker options are compatible with gVisor, try them out:
+Many docker options are compatible with gVisor, try them out. Here is an example:
 
 ```bash
 docker run --runtime=runsc --rm --link backend:database -v ~/bin:/tools:ro -p 8080:80 --cpus=0.5 -it busybox telnet towel.blinkenlights.nl

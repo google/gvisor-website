@@ -9,8 +9,8 @@ network stack. Data link layer packets are written directly to the virtual
 device inside the network namespace setup by Docker or Kubernetes.
 
 The IP address and routes configured for the device are transferred inside the 
-sandbox. The loopback device runs exclusively inside the sandbox and doesn't use
-the host. You can inspect them running:
+sandbox. The loopback device runs exclusively inside the sandbox and does not 
+use the host. You can inspect them by running:
 
 ```bash
 docker run --rm --runtime=runsc alpine ip addr

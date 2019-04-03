@@ -35,6 +35,6 @@ sudo systemctl restart docker
 
 Run your container again, and inspect the files under `/tmp/runsc`. The log file
 with name `*.boot` will contain the strace logs from your application, which can
-be useful for identifying missing or broken system calls in gVisor. If you're
-having problems to start the container, the file with name `*.create` may have
-the reason for the failure.
+be useful for identifying missing or broken system calls in gVisor. If you are
+having problems to start the container, the log file `*.create` may have the
+reason for the failure.

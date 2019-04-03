@@ -15,7 +15,7 @@ more depth in the [Architecture Guide](../../architecture_guide/).
 ## Selecting a Platform
 
 The platform is selected by the `--platform` command line flag passed to 
-`runsc`. By default, ptrace platform is selected. To select a different 
+`runsc`. By default, the ptrace platform is selected. To select a different 
 platform, modify your Docker configuration (`/etc/docker/daemon.json`) to 
 pass this argument:
 
