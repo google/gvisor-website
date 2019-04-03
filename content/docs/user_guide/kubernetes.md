@@ -1,6 +1,6 @@
 +++
 title = "Kubernetes"
-weight = 30
+weight = 20
 +++
 gVisor can run sandboxed containers in a Kubernetes cluster with Minikube. After
 the gVisor addon is enabled, pods with `io.kubernetes.cri.untrusted-workload`
