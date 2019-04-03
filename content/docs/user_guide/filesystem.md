@@ -1,9 +1,9 @@
 +++
 title = "Filesystem"
-weight = 50
+weight = 45
 +++
-gVisor accesses the filesystem through a file proxy, called gofer. The gofer runs
-as a separate process, that is isolated from the sandbox. Gofer instances 
+gVisor accesses the filesystem through a file proxy, called the Gofer. The gofer 
+runs as a separate process, that is isolated from the sandbox. Gofer instances 
 communicate with their respective sentry using the 9P protocol. For a more detailed
 explanation see [Overview > Gofer](../architecture_guide/overview/#gofer)
 
@@ -13,7 +13,7 @@ To completely isolate the host filesystem from the sandbox, you can set a writab
 tmpfs overlay on top of the entire filesystem. All modifications are saved to the
 overlay, keeping the host filesystem unmodified.
 
-> Note that all created and modified files are stored in memory inside the sandbox.
+> Note: All created and modified files are stored in memory inside the sandbox.
 
 Add the following `runtimeArgs` to your Docker configuration
 (`/etc/docker/daemon.json`) and restart the Docker daemon:

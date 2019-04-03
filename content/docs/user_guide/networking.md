@@ -19,8 +19,8 @@ docker run --rm --runtime=runsc alpine ip addr
 ## Network passthrough
 
 For high-performance networking applications, you may choose to disable the user
-space network stack and instead use the host network stack. Note that this mode
-decreases the isolation to the host.
+space network stack and instead use the host network stack, including the loopback.
+Note that this mode decreases the isolation to the host.
 
 Add the following `runtimeArgs` to your Docker configuration
 (`/etc/docker/daemon.json`) and restart the Docker daemon:
