@@ -21,7 +21,8 @@ To enable debug and system call logging, add the `runtimeArgs` below to your
 }
 ```
 
-> Note: the last `/` in `--debug-log` is needed to interpret it as a directory. 
+
+> Note: the last `/` in `--debug-log` is needed to interpret it as a directory.
 > Then each `runsc` command executed will create a separate log file.
 > Otherwise, log messages from all commands will be appended to the same file.
 
