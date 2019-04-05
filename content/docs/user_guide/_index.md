@@ -3,6 +3,10 @@ title = "User Guide"
 weight = 10
 +++
 
-Using gVisor for the first time? To get started, use either the [Docker Quick
-Start](./docker/), the [OCI Quick Start](./oci/) or select a specific topic via
-the menu.
+gVisor can be used with Docker, Kubernetes, or directly using `runsc` with crafted OCI 
+spec for your container. Use the links below to see detailed instructions for each
+of them:
+
+ * [Docker](./docker/): The quickest and easiest way to get started.
+ * [Kubernetes](./kubernetes/): Isolate Pods in your K8s cluster with gVisor.
+ * [OCI Quick Start](./oci/): Expert mode. Customize gVisor for your environment.
