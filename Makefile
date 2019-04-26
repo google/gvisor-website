@@ -3,17 +3,16 @@ HUGO_VERSION := 0.53
 HTMLPROOFER_VERSION := 3.10.2
 NPM := npm
 GCLOUD := gcloud
-GCP_PROJECT := gvisor-website
 
-# Source Go files. example: main.go foo/bar.go
+# Source Go files, example: main.go foo/bar.go.
 GO_SOURCE = $(shell find cmd/gvisor-website -type f -name "*.go" | sed 's/ /\\ /g')
-# Target Go files. example: public/main.go public/foo/bar.go
+# Target Go files, example: public/main.go public/foo/bar.go.
 GO_TARGET = $(shell cd cmd/gvisor-website && find . -type f -name "*.go" | sed 's/ /\\ /g' | sed 's/^.\//public\//')
 
 default: website
 .PHONY: default
 
-website: all-upstream public/app.yaml $(GO_TARGET) public/static
+website: public/app.yaml $(GO_TARGET) public/static
 .PHONY: website
 
 public:
@@ -22,10 +21,15 @@ public/app.yaml: public
 	cp -vr cmd/gvisor-website/app.yaml public/
 
 # Load repositories.
-upstream:
-	mkdir -p upstream
-upstream-%: upstream
-	if [ -d upstream/$* ]; then (cd upstream/$* && git pull --rebase); else git clone https://gvisor.googlesource.com/$*/ upstream/$*; fi
+#
+# Note that the makefile will perform the clone, but we prefer to clone
+# directly via a cloudbuild step. See cloudbuild.yaml.
+upstream-%:
+	if [ -d upstream/$* ]; then                                        \
+		(cd upstream/$* && git pull --rebase);                     \
+	else                                                               \
+		git clone https://gvisor.googlesource.com/$*/ upstream/$*; \
+	fi
 all-upstream: upstream-gvisor upstream-community
 # All repositories are listed here: force updates.
 .PHONY: all-upstream upstream-%
@@ -35,9 +39,17 @@ content/docs/community/sigs: upstream/community $(wildcard upstream/community/si
 	rm -rf content/docs/community/sigs && mkdir -p content/docs/community/sigs
 	for file in $(shell cd upstream/community/sigs && ls -1 *.md | cut -d'.' -f1 | grep -v TEMPLATE); do      \
 		title=$$(cat upstream/community/sigs/$$file.md | grep -E '^# ' | cut -d' ' -f2-);                 \
-		echo -e "+++\ntitle = \"$$title\"\n+++\n" > content/docs/community/sigs/$$file.md;                  \
+		echo -e "+++\ntitle = \"$$title\"\n+++\n" > content/docs/community/sigs/$$file.md;                \
 		cat upstream/community/sigs/$$file.md |grep -v -E '^# ' >> content/docs/community/sigs/$$file.md; \
 	done
+
+# Regenerates the source tree; not a default target.
+static/src: upstream/gvisor/bazel-bin/gopath upstream/gvisor/bazel-out/volatile-status.txt
+	rm -rf $@ && cp -rL $</src/*gvisor*/src $@
+	cp -r upstream/gvisor/runsc/*.go $$(find $@ -type d -name runsc)
+	cd $@ && git init . && git add * && \
+		git commit -m "$(shell grep VERSION upstream/gvisor/bazel-out/volatile-status.txt | cut -d' ' -f2)";
+.PHONY: static/src
 
 $(GO_TARGET): public $(GO_SOURCE)
 	cd cmd/gvisor-website && find . -name "*.go" -exec cp --parents \{\} ../../public \;
@@ -60,8 +72,9 @@ deploy: public/app.yaml
 	cd public && $(GCLOUD) app deploy
 .PHONY: deploy
 
-# CI related Commmands
-##############################################################################
+########################
+# CI related Commmands #
+########################
 
 # Submit a build to Cloud Build manually. Used to test cloudbuild.yaml changes.
 cloud-build:

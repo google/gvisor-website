@@ -13,6 +13,19 @@
 # limitations under the License.
 
 steps:
+  # Generate the source tree.
+  - name: 'gcr.io/cloud-builders/git'
+    args: ['clone', 'https://gvisor.googlesource.com/gvisor']
+    dir: 'upstream'
+  - name: 'gcr.io/cloud-builders/git'
+    args: ['clone', 'https://gvisor.googlesource.com/community']
+    dir: 'upstream'
+  - name: 'gcr.io/cloud-builders/bazel'
+    args: ['build', ':gopath']
+    dir: 'upstream/gvisor'
+  - name: 'gcr.io/gvisor-website/hugo:0.53'
+    entrypoint: 'bash'
+    args: ['make', 'static/src']
   # Generate the website.
   - name: 'gcr.io/gvisor-website/hugo:0.53'
     args: ["make"]
