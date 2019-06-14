@@ -35,6 +35,13 @@ If you’re having problems running a container with `runsc` it’s most likely 
 to a compatibility issue or a missing feature in gVisor. See
 [Debugging](../debugging/).
 
+### When I run my container, docker fails and I see `error changing root filesystem: invalid argument` in the gVisor logs.
+
+The root filesystem for the container is likely located on a `tmpfs`, `ramfs`,
+or `initramfs` mount. These filesystem types cannot be used with
+[pivot_root](http://man7.org/linux/man-pages/man2/pivot_root.2.html). Put the
+root filesystem for your OCI bundle on a filesystem with a different type.
+
 ### When I run my container, docker fails with: `flag provided but not defined: -console`
 
 You're using an old version of Docker. See [Docker Quick Start](../docker/).
