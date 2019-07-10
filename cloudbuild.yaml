@@ -52,6 +52,9 @@ steps:
   # Pull npm dependencies for scss
   - name: 'gcr.io/cloud-builders/npm'
     args: ['ci']
+  # Copy App Engine app files.
+  - name: 'gcr.io/gvisor-website/hugo:0.53'
+    args: ["make", "app"]
   # Generate the website.
   - name: 'gcr.io/gvisor-website/hugo:0.53'
     env: ['HUGO_ENV=production']
