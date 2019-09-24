@@ -2,7 +2,8 @@ The easiest way to get `runsc` is from the [latest nightly
 build][latest-nightly]. After you download the binary, check it against the
 SHA512 [checksum file][latest-hash].
 
-Older builds can also be found here:
+Older builds can also be found here (note that some days will not have releases
+due to failing builds):
 `https://storage.googleapis.com/gvisor/releases/nightly/${yyyy-mm-dd}/runsc`
 
 With corresponding SHA512 checksums here:
