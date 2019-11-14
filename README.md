@@ -36,10 +36,18 @@ You can use the hugo web server for testing. This will start a webserver that
 will rebuild the site when you make content changes:
 
 ```
-make server
+make devserver
 ```
 
 Access the site at http://localhost:8080
+
+If you need to test all functionality including redirects you can start the App
+Engine app locally. However, you will need to restart the app when making
+content changes:
+
+```
+make server
+```
 
 ## Building
 
