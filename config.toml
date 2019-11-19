@@ -70,6 +70,8 @@ id = "UA-150193582-1"
 # Everything below this are Site Params
 
 [params]
+#description = ""
+images = ["logo.png"]
 copyright = "Google LLC"
 privacy_policy = "https://policies.google.com/privacy"
 github_repo = "https://github.com/google/gvisor-website"
