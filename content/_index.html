@@ -12,40 +12,67 @@ description = "A container sandbox runtime focused on security, efficiency, and 
 </div>
 {{< /blocks/cover >}}
 
-{{% blocks/lead color="secondary" %}}
-gVisor is an open-source, <a href="https://www.opencontainers.org/" target="_blank" rel="noopener">OCI-compatible</a> sandbox runtime that provides a virtualized container environment. It runs containers with a new <a href="https://en.wikipedia.org/wiki/User_space" target="_blank" rel="noopener">user-space</a> kernel, delivering a low overhead container security solution for high-density applications.
+<div class="lead">
+  <section class="row position-relative">
+    <div class="container">
+      <div class="row h4 mb-0">
+        <div class="col-lg-6 col-lg-pull-6">
+          <h2 style="margin-bottom:1em"><strong>gVisor</strong> is a open-source container runtime
+          for running sandboxed workloads safely and easily.</h2>
 
-gVisor integrates with <a href="https://www.docker.com/" target="_blank" rel="noopener">Docker</a>, <a href="https://containerd.io/" target="_blank" rel="noopener">containerd</a> and <a href="https://kubernetes.io/" target="_blank" rel="noopener">Kubernetes</a>, making it easier to improve the security isolation of your containers while still using familiar tooling. Additionally, gVisor supports a variety of underlying mechanisms for intercepting application calls, allowing it to run in diverse host environments, including cloud-hosted virtual machines.
-{{% /blocks/lead %}}
+          <p>It provides each container with its own user space kernel, limiting the
+          attack surface of the host. gVisor is a container-native technology,
+          designed to improve container isolation without sacrificing the benefits of
+          container efficiency and portability.</p>
+        </div>
+        <div class="col-lg-6 col-lg-push-6">
+          <img src="/img/packed_tetris.svg" width="300px" class="center-block" style="position:absolute;top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);" alt="Container resource model"/>
+        </div>
+      </div>
+    </div>
+  </section>
 
-{{< blocks/section color="dark" >}}
+  <section class="row position-relative features">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h2>Features</h2>
+        </div>
+      </div>
 
-{{% blocks/feature icon="fas fa-lock" title="Defense in Depth" %}}
-Each sandbox has its own user-space kernel, providing additional protection from host kernel vulnerabilities.
-{{% /blocks/feature %}}
-
-{{% blocks/feature icon="fas fa-feather-alt" title="Lightweight" %}}
-Runs as a normal process and uses the host kernel for memory management and scheduling.
-{{% /blocks/feature %}}
-
-{{% blocks/feature icon="fab fa-linux" title="Zero Configuration" %}}
-Capable of running most Linux applications unmodified, with zero configuration.
-{{% /blocks/feature %}}
-
-{{< /blocks/section >}}
-
-{{< blocks/section color="white" >}}
-
-{{% blocks/feature icon="fas fa-book" title="Read the Docs" %}}
-Read the [documentation](./docs/) to understand gVisor, its architecture and trade-offs, and how to use it.
-{{% /blocks/feature %}}
-
-{{% blocks/feature icon="fas fa-code-branch" title="Contribute to gVisor" %}}
-Anyone is welcome to be a gVisor contributor. Please check out the [community information](./docs/community/) to get started.
-{{% /blocks/feature %}}
-
-{{% blocks/feature icon="fab fa-github" title="Give Feedback" %}}
-File feature requests, bugs, and compatibility issues on <a href="https://github.com/google/gvisor/issues" target="_blank" rel="noopener">GitHub</a>.
-{{% /blocks/feature %}}
-
-{{< /blocks/section >}}
+      <div class="row">
+        <div class="col-lg-4">
+          <h4 id="seamless-security">Container-native Security</h4>
+          <p>By providing each container with its own user-space kernel, gVisor
+          provides protection against privilege escalations while still integrating
+          seamlessly with popular container orchestration systems, such as Docker and
+          Kubernetes. This includes support for advanced features, such as a volumes,
+          terminals and sidecars.
+          </p>
+          <a class="button" href="/docs/architecture_guide/security/">Read More &raquo;</a>
+        </div>
+        <div class="col-lg-4">
+          <h4 id="resource-efficiency">Resource Efficiency</h4>
+          <p>Containers are efficient because workloads of different shapes and sizes
+          can be packed together by sharing host resources. By using host native
+          abstractions such as threads and memory mappings, gVisor closely co-operates
+          with the host to enable the same resource model as native containers.
+          Sandboxed containers can safely and securely share host resources with each
+          other and native containers on the same system.
+          </p>
+          <a class="button" href="/docs/architecture_guide/resources/">Read More &raquo;</a>
+        </div>
+        <div class="col-lg-4">
+          <h4 id="platform-portability">Platform Portability</h4>
+          <p>Modern infrastructure spans multiple clouds and data centers, often using
+          a mix of virtualized instances and traditional servers. The pluggable
+          platform architecture of gVisor allows it to run anywhere, enabling security
+          policies to be enforced consistently across multiple environments.
+          Sandboxing requirements need not dictate where workloads can run.
+          </p>
+          <a class="button" href="/docs/architecture_guide/platforms/">Read More &raquo;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

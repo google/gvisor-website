@@ -15,6 +15,8 @@ a.doc-table-anchor {
     visibility: hidden;
 }
 
+// NAVBAR
+
 // Adjust the width of the svg logo in the header. For smaller svg
 // files the width is too large.
 .td-navbar .navbar-brand .navbar-logo svg {
@@ -35,6 +37,10 @@ a.doc-table-anchor {
         display: block;
     }
 }
+
+// TOP PAGE
+
+//   COVER
 
 // Show an inner navbar as part of the cover block
 .cover-content nav {
@@ -73,6 +79,39 @@ a.doc-table-anchor {
     font-weight: bold;
 }
 
+//   LEAD
+
+.lead section:first-of-type {
+	padding-top: 4rem !important;
+}
+
+.lead section {
+	padding-top: 0rem !important;
+}
+
+//     TOP INTRO
+
+//     FEATURES
+
+section.features {
+	padding-top: 0rem !important;
+}
+
+.features h2 {
+	padding-bottom: 1.5rem;
+}
+
+.features h4 {
+	padding-bottom: 1rem;
+}
+.features p {
+	font-size: 1rem;
+}
+
+
+// DOCS
+
+// Set the size and color of header links.
 .td-page,.td-section {
     main a.header-link {
         color: inherit;
