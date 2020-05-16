@@ -100,7 +100,7 @@ compatibility-docs: bin/generate-syscall-docs
 	  -c '\
 		groupadd --gid $(shell id -g) $(shell id -gn) && \
 		useradd --uid $(shell id -u) --gid $(shell id -g) -ms /bin/bash $(USER) && \
-		su $(USER) -c "bazel --output_user_root=/bazel_user_root run //runsc -- help syscalls -o json"' | ./bin/generate-syscall-docs -out ./content/docs/user_guide/compatibility/
+		su $(USER) -c "bazel --output_user_root=/bazel_user_root run //runsc -- help syscalls -format json"' | ./bin/generate-syscall-docs -out ./content/docs/user_guide/compatibility/
 .PHONY: compatibility-docs
 
 check: check-markdown check-html

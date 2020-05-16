@@ -1,3 +1,7 @@
+> NOTE: This repository is no longer maintained. The website is now
+> maintained as part of the core [gVisor](http://www.github.com/google/gvisor/tree/master/website)
+> repository.
+
 # gVisor Website
 
 This repository holds the content for the gVisor website. It uses
